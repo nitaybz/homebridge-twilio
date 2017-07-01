@@ -105,6 +105,7 @@ TwilioSwitch.prototype = {
             });
 
         }
+        callback();
     },
 
     identify: function (callback) {
