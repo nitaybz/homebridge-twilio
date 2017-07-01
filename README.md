@@ -4,7 +4,8 @@ Homebridge plugin to make phone calls from a server using a static message.
 This plugin uses Twilio api, which is a paid service at a fair price - [www.Twilio.com](https://www.twilio.com).
 
 # Twilio configuraions
-To use this plugin, you need to signup to their website and get a phone number from their service it will use you in the config as **twilioNumber**. 
+To use this plugin, you need to signup to their website and get a phone number from their service it will use you in the config as **twilioNumber**.
+
 Then, create a 'TwiML' from the Runtime menu under 'TwiML Bin', this is an xml format file which include the content of the call you want to make. more information can be found here: [https://www.twilio.com/docs/api/twiml](https://www.twilio.com/docs/api/twiml).
 Another option is to store the xml file on your own servers with external access.
 
@@ -21,7 +22,7 @@ The link to your TwilML will be used in the config as **xmlUrl**.
 
 the **accountSid** and **authToken** can be retrieved from [https://www.twilio.com/console/account/settings](https://www.twilio.com/console/account/settings)
 
-After you set 
+After you set all of those, you can move forward to installing the plugin on homebridge.
 
 # Installation
 
