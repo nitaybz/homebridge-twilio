@@ -23,6 +23,24 @@ function TwilioSwitch(log, config) {
 }
 
 TwilioSwitch.prototype = {
+    
+    getServices: function () {
+        var informationService = new Service.AccessoryInformation();
+
+        informationService
+                .setCharacteristic(Characteristic.Manufacturer, "Twilio")
+                .setCharacteristic(Characteristic.Model, "Make a Call")
+                .setCharacteristic(Characteristic.SerialNumber, "api");
+
+        switchService = new Service.Switch(this.name);
+        switchService
+                .getCharacteristic(Characteristic.On)
+                .on('get', this.getPowerState.bind(this))
+                .on('set', this.setPowerState.bind(this));
+
+    
+        return [switchService, informationService];
+    },
 
     getPowerState: function (callback) {
         callback(null, false);
@@ -39,10 +57,12 @@ TwilioSwitch.prototype = {
                 if (err){
                     self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
                     self.log(err);
-                    callback(null, false);
+                    self.switchService.setCharacteristic(Characteristic.On, false);
+                    callback();
                 } else{
                     console.log("Call to " + self.toNumber + " Succeeded!");
-                    callback(null, false);
+                    self.switchService.setCharacteristic(Characteristic.On, false);
+                    callback();
                     if (self.repeatCall){
                         var repeat = setInterval(function(){
                             self.client.calls(call.sid)
@@ -90,23 +110,7 @@ TwilioSwitch.prototype = {
     identify: function (callback) {
         this.log("Identify requested!");
         callback(); // success
-    },
-
-    getServices: function () {
-        var informationService = new Service.AccessoryInformation();
-
-        informationService
-                .setCharacteristic(Characteristic.Manufacturer, "Twilio")
-                .setCharacteristic(Characteristic.Model, "Make a Call")
-                .setCharacteristic(Characteristic.SerialNumber, "api");
-
-        switchService = new Service.Switch(this.name);
-        switchService
-                .getCharacteristic(Characteristic.On)
-                .on('get', this.getPowerState.bind(this))
-                .on('set', this.setPowerState.bind(this));
+    }
 
     
-        return [switchService, informationService];
-    }
 };
