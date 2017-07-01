@@ -1,0 +1,25 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CD:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-156"
+    },
+    
+    "description": "This is a sample config!",
+
+    "platforms": [],
+
+    "accessories": [
+        {
+            "accessory": "Twilio",
+            "name": "Call David",
+            "accountSid": "4352435f45f423456d652643dxre",
+            "authToken": "RVGH54CG45G5TG354GRT45T45G4G", 
+            "xmlUrl": "https://handler.twilio.com/twiml/32JKN23ljknl23rl23",
+            "toNumber": "+445287563029",
+            "twilioNumber": "+445287562349",
+            "repeatCall": false
+        }
+    ]
+}

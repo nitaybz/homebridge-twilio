@@ -1,0 +1,28 @@
+{
+  "name": "homebridge-twilio",
+  "version": "0.0.1",
+  "description": "Homebridge plugin to make calls with a static message using Twilio api (paid service)",
+  "license": "ISC",
+  "main": "index.js",
+  "keywords": [
+    "homebridge-plugin",
+    "twilio",
+    "homebridge",
+    "call"
+  ],
+  "engines": {
+    "homebridge": ">=0.2.0"
+  },
+  "author": "nitaybz",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nitaybz/homebridge-twilio.git"
+  },
+   "bugs": {
+    "url": "https://github.com/nitaybz/homebridge-twilio/issues"
+  },
+   "homepage": "https://github.com/nitaybz/homebridge-twilio#readme",
+  "dependencies": {
+    "twilio": "*"
+  }
+}
