@@ -30,61 +30,61 @@ TwilioSwitch.prototype = {
 
     setPowerState: function(powerOn, callback) {
         var self = this;
-
-        self.client.calls.create({
-            url: self.xmlUrl,
-            to: self.toNumber,
-            from: self.twilioNumber,
-        }, function(err, call) {
-            if (err){
-                self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
-                self.log(err);
-                callback();
-            } else{
-                console.log("Call to " + self.toNumber + " Succeeded!");
-                callback();
-                if (self.repeatCall){
-                    var repeat = setInterval(function(){
-                        client.calls(call.sid)
-                            .fetch()
-                            .then((callDetails) => {
-                                switch (callDetails.status){
-                                    case "queued":
-                                        break;
-                                    case "ringing":
-                                        break;
-                                    case "in-progress":
-                                        clearInterval(repeat);
-                                        break;
-                                    case "completed":
-                                        clearInterval(repeat);
-                                        break;
-                                    default:
-                                        clearInterval(repeat);
-                                        self.log("No answer from " + self.toNumber + " - trying one more time...");
-                                        self.client.calls.create({
-                                            url: self.xmlUrl,
-                                            to: self.toNumber,
-                                            from: self.twilioNumber,
-                                        }, function(err, call) {
-                                            if (err){
-                                                self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
-                                                self.log(err);
-                                            } else{
-                                                console.log("Call to " + self.toNumber + " Succeeded!");
-                                            }
-                                        })
-                                        break;
-                                }
-                            });
-                    }, 3000)
+        if (powerOn){
+            self.client.calls.create({
+                url: self.xmlUrl,
+                to: self.toNumber,
+                from: self.twilioNumber,
+            }, function(err, call) {
+                if (err){
+                    self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
+                    self.log(err);
+                    callback(null, false);
+                } else{
+                    console.log("Call to " + self.toNumber + " Succeeded!");
+                    callback(null, false);
+                    if (self.repeatCall){
+                        var repeat = setInterval(function(){
+                            self.client.calls(call.sid)
+                                .fetch()
+                                .then((callDetails) => {
+                                    switch (callDetails.status){
+                                        case "queued":
+                                            break;
+                                        case "ringing":
+                                            break;
+                                        case "in-progress":
+                                            clearInterval(repeat);
+                                            break;
+                                        case "completed":
+                                            clearInterval(repeat);
+                                            break;
+                                        default:
+                                            clearInterval(repeat);
+                                            self.log("No answer from " + self.toNumber + " - trying one more time...");
+                                            self.client.calls.create({
+                                                url: self.xmlUrl,
+                                                to: self.toNumber,
+                                                from: self.twilioNumber,
+                                            }, function(err, call) {
+                                                if (err){
+                                                    self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
+                                                    self.log(err);
+                                                } else{
+                                                    console.log("Call to " + self.toNumber + " Succeeded!");
+                                                }
+                                            })
+                                            break;
+                                    }
+                                });
+                        }, 3000)
+                    }
+                    
+                    
                 }
-                
-                
-            }
-        });
+            });
 
-
+        }
     },
 
     identify: function (callback) {
