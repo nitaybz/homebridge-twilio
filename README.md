@@ -3,6 +3,8 @@
 Homebridge plugin to make phone calls from a server using a static message.
 This plugin uses Twilio api, which is a paid service at a fair price - [www.Twilio.com](https://www.twilio.com).
 
+Very good use for homekit alarms and sensor, you can set an automation to call your phone if your alarm is triggered, there is a water leak or smoke detected.
+
 # Twilio configuraions
 To use this plugin, you need to signup to their website and get a phone number from their service it will use you in the config as **twilioNumber**.
 
