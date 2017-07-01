@@ -32,14 +32,14 @@ TwilioSwitch.prototype = {
                 .setCharacteristic(Characteristic.Model, "Make a Call")
                 .setCharacteristic(Characteristic.SerialNumber, "api");
 
-        switchService = new Service.Switch(this.name);
-        switchService
+        this.switchService = new Service.Switch(this.name);
+        this.switchService
                 .getCharacteristic(Characteristic.On)
                 .on('get', this.getPowerState.bind(this))
                 .on('set', this.setPowerState.bind(this));
 
     
-        return [switchService, informationService];
+        return [this.switchService, informationService];
     },
 
     getPowerState: function (callback) {
