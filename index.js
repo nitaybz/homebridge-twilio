@@ -57,10 +57,10 @@ TwilioSwitch.prototype = {
                 if (err){
                     self.log("Could not make the call to " + self.toNumber + " !  - with Error:")
                     self.log(err);
-                    self.switchService.setCharacteristic(Characteristic.On, false);
+                    self.switchService.getCharacteristic(Characteristic.On).setValue(false, undefined)
                 } else{
                     console.log("Call to " + self.toNumber + " Succeeded!");
-                    self.switchService.setCharacteristic(Characteristic.On, false);
+                    self.switchService.getCharacteristic(Characteristic.On).setValue(false, undefined)
                     if (self.repeatCall){
                         var repeat = setInterval(function(){
                             self.client.calls(call.sid)
