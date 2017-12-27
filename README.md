@@ -5,6 +5,15 @@ This plugin uses Twilio api, which is a paid service at a fair price - [www.Twil
 
 Very good use for homekit alarms and sensor, you can set an automation to call your phone if your alarm is triggered, there is a water leak or smoke detected.
 
+_________________________________________
+#### Creating and maintaining Homebridge plugins consume a lot of time and effort, if you would like to share your appreciation, feel free to "Star" or donate. 
+
+<a target="blank" href="https://www.paypal.me/nitaybz"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg"/></a>
+<a target="blank" href="https://blockchain.info/payment_request?address=18uuUZ5GaMFoRH5TrQFJATQgqrpXCtqZRQ"><img src="https://img.shields.io/badge/Donate-Bitcoin-green.svg"/></a>
+
+[Click here](https://github.com/nitaybz?utf8=%E2%9C%93&tab=repositories&q=homebridge) to review more of my plugins.
+_________________________________________
+
 # Twilio configuraions
 To use this plugin, you need to signup to their website and get a phone number from their service it will use you in the config as **twilioNumber**.
 
